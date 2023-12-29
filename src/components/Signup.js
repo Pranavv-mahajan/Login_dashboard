@@ -5,7 +5,14 @@ import Input from "./Input";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { db } from "../firebase";
-import { collection, addDoc, arrayUnion } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  arrayUnion,
+  setDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -33,22 +40,22 @@ export default function Signup() {
     )
       .then((userCredential) => {
         console.log(userCredential);
-        addData();
+
+        addData(userCredential);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const addData = async () => {
+  const addData = async (userCredential) => {
     try {
-      const docRef = await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", userCredential.user.uid), {
         email: signupState.email,
-        username: signupState.username,
-        createdTime: Date().toLocaleString(),
-        LoginDetails: arrayUnion(Date().toLocaleString()),
+        createdTime: serverTimestamp(),
       });
-      console.log("Document written with ID: ", docRef.id);
+
+      // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }

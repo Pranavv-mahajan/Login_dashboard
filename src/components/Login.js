@@ -6,7 +6,13 @@ import Input from "./Input";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { db } from "../firebase";
-import { collection, addDoc, arrayUnion, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  arrayUnion,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -27,15 +33,13 @@ export default function Login() {
     e.preventDefault();
     console.log(loginState);
     authenticateUser();
-    updateData();
-
-    Navigate("/Dashboard");
   };
 
   //Handle Login API Integration here
   const authenticateUser = async () => {
     signInWithEmailAndPassword(auth, loginState.email, loginState.password)
       .then((userCredential) => {
+        updateData(userCredential);
         console.log(userCredential);
       })
       .catch((error) => {
@@ -43,11 +47,14 @@ export default function Login() {
       });
   };
 
-  const updateData = async () => {
+  const updateData = async (userCredential) => {
     try {
-      const docRef = await updateDoc(collection(db, "users"), {
-        LoginDetails: arrayUnion(Date().toLocaleString()),
+      const docRef = await addDoc(collection(db, "session"), {
+        user: userCredential.user.uid,
+        createdTime: serverTimestamp(),
       });
+      console.log(docRef);
+      Navigate("/Dashboard",{ state: {user:userCredential.user.uid, docid: docRef.id }});
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
