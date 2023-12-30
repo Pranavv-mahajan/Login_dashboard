@@ -6,15 +6,9 @@ import Input from "./Input";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { db } from "../firebase";
-import {
-  collection,
-  addDoc,
-  arrayUnion,
-  updateDoc,
-  serverTimestamp,
-} from "firebase/firestore";
-import { Link, Navigate } from "react-router-dom";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+// import { Link, Navigate } from "react-router-dom";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -54,7 +48,9 @@ export default function Login() {
         createdTime: serverTimestamp(),
       });
       console.log(docRef);
-      Navigate("/Dashboard",{ state: {user:userCredential.user.uid, docid: docRef.id }});
+      Navigate("/Dashboard", {
+        state: { user: userCredential.user.uid, docid: docRef.id },
+      });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);

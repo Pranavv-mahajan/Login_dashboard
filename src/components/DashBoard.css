@@ -1,58 +1,64 @@
 /* Dashboard.css */
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
   
-  .container {
-    max-width: 2000x;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  thead {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  button {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Add more styles as needed */
-  
+  /* DashBoard.css */
+
+/* Main container styles */
+div {
+  margin: 3%;
+  align-items: center;
+  padding: 0;
+}
+
+/* Logout button styles */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Table container styles */
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Table styles */
+table {
+  width: 150%;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* User statistics styles */
+h2 {
+  margin-top: 20px;
+  color: #333;
+}
+
+p {
+  margin: 5px 0;
+  color: #555;
+}
