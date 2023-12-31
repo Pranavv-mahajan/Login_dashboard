@@ -1,13 +1,11 @@
 /* Dashboard.css */
 
-  
-  /* DashBoard.css */
-
 /* Main container styles */
 div {
-  margin: 3%;
+  margin: 1%;
   align-items: center;
   padding: 0;
+  height: auto;
 }
 
 /* Logout button styles */
@@ -18,6 +16,7 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin-top: 10px; /* Add margin to separate the button from user statistics */
 }
 
 button:hover {
@@ -26,7 +25,9 @@ button:hover {
 
 /* Table container styles */
 .table-container {
-  margin-top: 20px;
+  margin-top: 40%;
+  padding: 20px;
+  padding-top: 20px;
   overflow-x: auto;
   align-items: center;
   margin-left: auto;
@@ -39,6 +40,7 @@ table {
   width: 150%;
   border-collapse: collapse;
   margin: auto;
+  margin-top: 20px;
 }
 
 th, td {
@@ -52,13 +54,25 @@ th {
   color: white;
 }
 
-/* User statistics styles */
-h2 {
-  margin-top: 20px;
-  color: #333;
+/* User statistics container styles */
+.user-stats-container {
+  display: none; /* Hide user statistics by default */
 }
 
-p {
+/* User statistics styles */
+h2 {
+  margin-top: 1px;
+  color: #333;
+  cursor: pointer; /* Add cursor pointer to indicate that it's clickable */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
   margin: 5px 0;
   color: #555;
 }
+
